@@ -1,0 +1,447 @@
+/* =========================
+   RESET & GLOBAL VARIABLES
+   ========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+:root {
+  --banner-height: 80px;
+  --banner-gap: 10px;
+  --banner-menu-height: 40px;
+  --horizontal-height: 100px;
+  --horizontal-gap: 10px;
+  --side-width: 14%;
+  --side-offset: 12px;
+  --container-gap: 12px;
+}
+
+/* =========================
+   BANNER
+   ========================= */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--banner-height);
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 20px;
+  font-size: 24px;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.banner-wrapper {
+  width: 100%;
+}
+
+.banner-content {
+  width: 100%;
+  font-size: 32px;
+  font-weight: bold;
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #333;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+/* =========================
+   BANNER MENU
+   ========================= */
+.banner-menu {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 6px 20px 6px 40px;
+  background-color: #444;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  gap: 16px;
+  position: relative;
+  top: 8px;
+  border-radius: 16px 8px 8px 16px;
+  z-index: 1001;
+}
+
+.banner-menu a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.banner-menu a:hover {
+  background-color: #555;
+  color: #ffd700;
+}
+
+.banner-search {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.banner-search input {
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  height: 28px;
+  width: 160px;
+}
+
+.banner-search button {
+  height: 28px;
+  padding: 0 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.banner-search button:hover {
+  background-color: #0056b3;
+}
+
+/* =========================
+   SIDE MENUS
+   ========================= */
+.left-menu,
+.right-menu {
+  position: fixed;
+  top: calc(var(--banner-height) + var(--banner-menu-height) + var(--container-gap));
+  height: calc(100vh - var(--banner-height) - var(--banner-menu-height) - var(--container-gap));
+  padding: 20px;
+  overflow-y: auto;
+  z-index: 900;
+  background-color: rgba(255,255,255,0.95);
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.left-menu {
+  left: var(--side-offset);
+  width: calc(var(--side-width) - var(--side-offset));
+}
+
+.right-menu {
+  right: var(--side-offset);
+  width: calc(var(--side-width) - var(--side-offset));
+}
+
+.left-menu ul,
+.right-menu ul {
+  list-style: none;
+}
+
+.left-menu li,
+.right-menu li {
+  margin: 15px 0;
+}
+
+.left-menu a,
+.right-menu a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.left-menu a:hover,
+.right-menu a:hover {
+  color: #007bff;
+}
+
+/* =========================
+   FLOATING HORIZONTAL CONTAINER
+   ========================= */
+#horizontal-container {
+  position: fixed;
+  top: calc(var(--banner-height) + var(--banner-menu-height) + var(--container-gap));
+  left: calc(var(--side-width) + var(--container-gap));
+  right: calc(var(--side-width) + var(--container-gap));
+  height: var(--horizontal-height);
+  background-color: #f7fff0;
+  border: 1px solid #c8e6c9;
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-x: auto;
+  gap: 10px;
+  z-index: 950;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.horizontal-item {
+  flex: 0 0 auto;
+  background-color: #e8f5e9;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #c8e6c9;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+/* =========================
+   MAIN CONTENT
+   ========================= */
+.content {
+  margin-top: calc(var(--banner-height) + var(--banner-menu-height) + var(--banner-gap) + var(--horizontal-height) + var(--horizontal-gap));
+  margin-left: calc(var(--side-width) + var(--container-gap));
+  margin-right: calc(var(--side-width) + var(--container-gap));
+  min-height: calc(100vh - var(--banner-height) - var(--banner-menu-height));
+  background: transparent;
+  overflow-y: auto;
+}
+
+.content,
+#performer-grid,
+#content-container {
+  background-color: #f7fff0;
+  border: 1px solid #c8e6c9;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+/* Inner container box (stays between side menus) */
+#content-container {
+  min-height: 400px;
+  background-color: #f7fff0;
+  border: 1px solid #c8e6c9;
+  border-radius: 8px;
+  padding: 0;  /* no padding inside container */
+  box-sizing: border-box;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* =========================
+   GRID
+   ========================= */
+#performer-grid img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+#performer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+/* =========================
+   PERFORMER PAGE
+   ========================= */
+/* Performer Layout: left + right content */
+/* Performer layout fits exactly inside content container */
+.performer-layout {
+  display: flex;
+  width: 100%;        /* stays full width of parent (#content-container) */
+  margin: 0;          /* remove top margin if you want it flush */
+  gap: 0;             /* internal spacing handled by children padding */
+  box-sizing: border-box;
+  padding: 0;         /* remove extra padding if needed */
+}
+
+
+/* Left Performer Details: 65% of available width */
+.performer-left {
+  flex: 0 0 65%;
+  padding: 0; /* internal padding */
+  box-sizing: border-box;
+  background: transparent;
+}
+
+/* Right Performer Details: 35% of available width */
+.performer-right {
+  flex: 0 0 35%;
+  padding: 0; /* internal padding */
+  box-sizing: border-box;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  overflow-wrap: break-word; /* prevent text overflow */
+}
+
+.performer-right img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.performer-left h1,
+.performer-right h1 {
+  margin-top: 0;
+}
+
+.performer-left p {
+  margin: 5px 0;
+}
+
+.rating-wrapper {
+  margin-top: 10px;
+}
+
+.collage-container {
+  width: 100%;
+  max-width: 350px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+}
+
+/* =========================
+   LEFT PERFORMER DETAIL
+   ========================= */
+/* Performer Header: left + right */
+.performer-header {
+  display: flex;
+  justify-content: space-between;   /* space left/right */
+  align-items: flex-start;          /* align to top */
+  margin-bottom: 20px;
+  padding: 0;                       /* container has no extra padding */
+  border: 1px solid #d9e2d9;
+  border-radius: 10px;
+  background: #f9fdf9;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  gap: 0;                           /* use internal padding instead of gap */
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* Left side: 70% */
+.header-left {
+  flex: 0 0 70%;
+  padding: 15px;                   /* internal padding */
+  box-sizing: border-box;
+}
+
+.header-left h2 {
+  margin: 0 0 10px;
+  font-size: 1.6em;
+  color: #222;
+}
+
+.aliases {
+  margin-top: 10px;
+}
+
+.alias-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.alias-grid span {
+  background: #f0f2f5;
+  padding: 4px 6px;
+  border-radius: 6px;
+  font-size: 0.9em;
+}
+
+/* Right side: 30% */
+.header-right {
+  flex: 0 0 30%;
+  padding: 15px;                   /* internal padding */
+  box-sizing: border-box;
+  background: #f5f7fb;
+  border-radius: 8px;
+  font-size: 0.95em;
+  line-height: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  overflow-wrap: break-word;        /* prevent text overflow */
+}
+
+.header-right p {
+  margin: 6px 0;
+}
+
+/* =========================
+   TABS
+   ========================= */
+.performer-tabs-box {
+  position: relative;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding-top: 0;
+  margin-top: 10px;
+}
+
+.tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.tab-button {
+  padding: 6px 14px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 8px 8px 0 0;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.tab-button[data-tab="details"] {
+  background: #f5faff;
+  color: #336699;
+}
+
+.tab-button[data-tab="trivia"] {
+  background: #f6fff7;
+  color: #2d6a3c;
+}
+
+.tab-button.active {
+  color: #000;
+  z-index: 3;
+}
+
+.tab-content {
+  display: none;
+  border: none;
+  border-radius: 0;
+  padding: 15px;
+  position: relative;
+  z-index: 1;
+  background: #fff;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+#details.active,
+.tab-button[data-tab="details"].active {
+  background: #e9f2ff;
+}
+
+#trivia.active,
+.tab-button[data-tab="trivia"].active {
+  background: #eaf7ec;
+}

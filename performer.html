@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Galz - Performer Details</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Banner -->
+<header id="banner"></header>
+
+<!-- Floating Horizontal Container -->
+<div id="horizontal-container">
+  <div class="horizontal-item">Item 1</div>
+  <div class="horizontal-item">Item 2</div>
+  <div class="horizontal-item">Item 3</div>
+  <div class="horizontal-item">Item 4</div>
+</div>
+
+<!-- Left Menu -->
+<aside class="left-menu" id="left-menu"></aside>
+
+<!-- Right Menu -->
+<aside class="right-menu" id="right-menu"></aside>
+
+<!-- Main Content -->
+<main class="content" id="content-container"></main>
+
+<script type="module">
+  import { loadModule } from './js/contentLoader.js';
+
+  // Helper to load HTML into a container
+  async function loadHTML(url, elementId) {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error('Failed to load ' + url);
+      const html = await response.text();
+      document.getElementById(elementId).innerHTML = html;
+    } catch (err) {
+      document.getElementById(elementId).innerHTML = `<p>Error loading ${url}: ${err}</p>`;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    // Load banner and menus
+    await loadHTML('banner.html', 'banner');
+    await loadHTML('left-menu.html', 'left-menu');
+    await loadHTML('right-menu.html', 'right-menu');
+
+    // Get performer ID from URL query
+    const params = new URLSearchParams(window.location.search);
+    const performerId = params.get('id');
+
+    // Load performer details module
+    if (performerId) {
+      await loadModule('performerDetails', 'content-container', { performerId });
+    } else {
+      const container = document.getElementById('content-container');
+      container.innerHTML = '<p>No performer selected.</p>';
+    }
+  });
+</script>
+
+</body>
+</html>

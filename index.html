@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - All Galz</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Banner -->
+<header id="banner"></header>
+
+<!-- Left Menu -->
+<aside class="left-menu" id="left-menu"></aside>
+
+<!-- Right Menu -->
+<aside class="right-menu" id="right-menu"></aside>
+
+<!-- Floating horizontal container -->
+<div id="horizontal-container"></div>
+
+<!-- Main Content -->
+<main class="content" id="content-container">
+  <p>Welcome to All Galz Home Page</p>
+  <p>This is a placeholder content for the home page.</p>
+  <p>Click the menu to navigate to the performers grid page.</p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel est eu dolor cursus vestibulum. Proin non nisi id purus tincidunt bibendum.</p>
+  <p>Scroll down to see how the floating horizontal bar stays fixed.</p>
+  <p style="margin-top:800px;">End of page content.</p>
+</main>
+
+<script type="module">
+  import { loadHTML } from './js/main.js';
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    // Load banner and menus
+    await loadHTML('banner.html', 'banner');
+    await loadHTML('left-menu.html', 'left-menu');
+    await loadHTML('right-menu.html', 'right-menu');
+
+    // Populate horizontal container dynamically
+    const horizontalContainer = document.getElementById('horizontal-container');
+    const items = ['Promo 1', 'Promo 2', 'Promo 3', 'Promo 4', 'Promo 5'];
+    items.forEach(label => {
+      const div = document.createElement('div');
+      div.className = 'horizontal-item';
+      div.textContent = label;
+      horizontalContainer.appendChild(div);
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Galz - Performers Grid</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Banner -->
+<header id="banner"></header>
+
+<!-- Floating Horizontal Container -->
+<div id="horizontal-container">
+  <div class="horizontal-item">Item 1</div>
+  <div class="horizontal-item">Item 2</div>
+  <div class="horizontal-item">Item 3</div>
+  <div class="horizontal-item">Item 4</div>
+</div>
+
+
+<!-- Left Menu -->
+<aside class="left-menu" id="left-menu"></aside>
+
+<!-- Right Menu -->
+<aside class="right-menu" id="right-menu"></aside>
+
+<!-- Main Content -->
+<main class="content" id="content-container"></main>
+
+<script type="module">
+  import { initPage } from './js/main.js';
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    await initPage('grid', {
+      jsonPath: './data/performers.json',       // lightweight file for grid
+      columns: 5,
+      imageBasePath: './data/images',
+      placeholderImage: './data/images/placeholder.jpg'
+    });
+  });
+</script>
+
+</body>
+</html>
